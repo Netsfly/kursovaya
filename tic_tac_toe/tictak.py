@@ -20,7 +20,7 @@ class Square(p.sprite.Sprite):
         self.rect.center = (self.x, self.y)
 
     def clicked(self, x_val, y_val):
-        global turn
+        global turn, won
 
         if self.content == '':
             if self.rect.collidepoint(x_val, y_val):
@@ -31,17 +31,36 @@ class Square(p.sprite.Sprite):
                     self.image = x_image
                     self.image = p.transform.scale(self.image, (self.width, self.height))
                     turn = 'o'
-                    CompMove()
+                    checkWinner('x')
+
+                    if not won:
+                        CompMove()
 
                 else:
                     self.image = o_image
                     self.image = p.transform.scale(self.image, (self.width, self.height))
                     turn = 'x'
+                    checkWinner('o')
+
+
+def checkWinner(player):
+    global background, won
+
+    for i in range(8):
+        if board[winners[i][0]] == player and board[winners[i][1]] == player and board[winners[i][2]] == player:
+            won = True
+            break
+
+    if won:
+        Update()
+        square_group.empty()
+        background = p.image.load(player.upper() + ' Wins.png')
+        background = p.transform.scale(background, (WIDTH, HEIGHT))
 
 
 def Winner(player):
-    global CompMove, move
-    
+    global compMove, move
+
     for i in range(8):
         if board[winners[i][0]] == player and board[winners[i][1]] == player and board[winners[i][2]] == '':
             compMove = winners[i][2]
@@ -56,12 +75,16 @@ def Winner(player):
             move = False
 
 
-
-
 def CompMove():
     global move
 
     move = True
+
+    if move:
+        Winner('o')
+
+    if move:
+        Winner('x')
 
     if move:
         checkCentre()
