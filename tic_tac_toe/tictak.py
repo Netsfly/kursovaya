@@ -18,6 +18,13 @@ class Square(p.sprite.Sprite):
     def update(self):
         self.rect.center = (self.x, self.y)
         
+    def clicked(self, x_val, y_val):
+        global turn
+        if self.content == '  ':
+            if self.rect.collidepoint(x_val, y_val):
+                self.content = turn
+    
+        
 def Update():
     win.blit(background, (0, 0))
     square_group.draw(win)
@@ -50,6 +57,7 @@ for y in range(1 ,4):
         num += 1
 
 
+turn = 'x'
 run = True
 while run:
     clock.tick(60)
