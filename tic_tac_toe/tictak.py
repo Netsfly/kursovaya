@@ -24,6 +24,11 @@ class Square(p.sprite.Sprite):
             if self.rect.collidepoint(x_val, y_val):
                 self.content = turn
                 board[self.number] = turn
+                
+                if turn == 'x':
+                    self.image = x_image
+                    self.image = p.transform.scale(self.image, (self.width, self.height))
+                    turn = 'o'
     
         
 def Update():
