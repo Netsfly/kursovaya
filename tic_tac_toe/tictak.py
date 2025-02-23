@@ -45,15 +45,18 @@ class Square(p.sprite.Sprite):
 
 
 def checkWinner(player):
-    global background, won
+    global background, won, startX, startY, endX, endY
 
     for i in range(8):
         if board[winners[i][0]] == player and board[winners[i][1]] == player and board[winners[i][2]] == player:
             won = True
+            getPos(winners[i][0], winners[i][2])
             break
 
     if won:
         Update()
+        drawLine(startX, startY, endX, endY)
+
         square_group.empty()
         background = p.image.load(player.upper() + ' Wins.png')
         background = p.transform.scale(background, (WIDTH, HEIGHT))
@@ -180,6 +183,7 @@ def checkEdge():
             move = False
             break
 
+
 def getPos(n1, n2):
     global startX, startY, endX, endY
 
@@ -191,12 +195,13 @@ def getPos(n1, n2):
         elif sqs.number == n2:
             endX = sqs.x
             endY = sqs.y
-            
+
 
 def drawLine(x1, y1, x2, y2):
     p.draw.line(win, (0, 0, 0), (x1, y1), (x2, y2), 15)
     p.display.update()
     time.sleep(2)
+
 
 def Update():
     win.blit(background, (0, 0))
