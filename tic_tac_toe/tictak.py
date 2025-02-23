@@ -45,7 +45,15 @@ def checkCentre():
         compMove = 5
         move = False
         
-
+def checkCorner():
+    global compMove, move
+    
+    for i in range(1, 11, 2):
+        if i != 5:
+            if board[i] == '':
+                compMove = i
+                move = False
+                break
 
 
 def Update():
