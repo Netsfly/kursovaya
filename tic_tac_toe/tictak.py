@@ -180,6 +180,17 @@ def checkEdge():
             move = False
             break
 
+def getPos(n1, n2):
+    global startX, startY, endX, endY
+
+    for sqs in squares:
+        if sqs.number == n1:
+            startX = sqs.x
+            startY = sqs.y
+
+        elif sqs.number == n2:
+            endX = sqs.x
+            endY = sqs.y
 
 def Update():
     win.blit(background, (0, 0))
@@ -221,6 +232,11 @@ dangerPos6 = ['', '', '', '', '', 'o', 'x', 'x', '', '']
 dangerPos7 = ['', '', '', '', '', 'o', 'x', '', 'x', '']
 dangerPos8 = ['', 'x', '', '', '', 'o', '', '', 'x', '']
 dangerPos9 = ['', '', '', 'x', '', 'o', '', '', 'x', '']
+
+startX = 0
+startY = 0
+endX = 0
+endY = 0
 
 num = 1
 for y in range(1, 4):
