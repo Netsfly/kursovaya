@@ -23,6 +23,7 @@ class Square(p.sprite.Sprite):
         if self.content == '  ':
             if self.rect.collidepoint(x_val, y_val):
                 self.content = turn
+                board[self.number] = turn
     
         
 def Update():
@@ -46,6 +47,8 @@ background = p.transform.scale(background_image, (WIDTH, HEIGHT))
 
 square_group = p.sprite.Group()
 squares = []
+board = [' ' for i in range(10)]
+
 
 num = 1
 for y in range(1 ,4):
