@@ -31,6 +31,7 @@ class Square(p.sprite.Sprite):
                     self.image = x_image
                     self.image = p.transform.scale(self.image, (self.width, self.height))
                     turn = 'o'
+                    CompMove()
 
                 else:
                     self.image = o_image
@@ -40,31 +41,35 @@ class Square(p.sprite.Sprite):
 
 def CompMove():
     global move
+
     move = True
+
     if move:
         checkCentre()
+
     if move:
         checkCorner()
+
     if move:
         checkEdge()
+
     if not move:
         for square in squares:
-            if square.number == CompMove:
+            if square.number == compMove:
                 square.clicked(square.x, square.y)
-        
-    
 
 
 def checkCentre():
     global compMove, move
-    
+
     if board[5] == '':
         compMove = 5
         move = False
-        
+
+
 def checkCorner():
     global compMove, move
-    
+
     for i in range(1, 11, 2):
         if i != 5:
             if board[i] == '':
@@ -72,14 +77,16 @@ def checkCorner():
                 move = False
                 break
 
+
 def checkEdge():
     global compMove, move
-    
+
     for i in range(2, 10, 2):
         if board[i] == '':
             compMove = i
             move = False
             break
+
 
 def Update():
     win.blit(background, (0, 0))
