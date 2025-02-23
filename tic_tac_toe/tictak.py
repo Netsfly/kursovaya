@@ -11,3 +11,10 @@ class Square(p.sprite.Sprite):
         self.y = y_id * self.heght
         self.content = ''
         self.number = number
+        self.image = blank_image
+        self.image = p.transform.scale(self.image,(self.width, self.heght))
+        
+blank_image = p.image.load('Blanc.png')
+x_image = p.image.load('x.png')
+y_image = p.image.load('o.png')
+background_image = p.image.load('Background.png')
