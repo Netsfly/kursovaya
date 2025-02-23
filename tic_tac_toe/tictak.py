@@ -10,7 +10,7 @@ class Square(p.sprite.Sprite):
         self.height = 120
         self.x = x_id * self.width
         self.y = y_id * self.height
-        self.content = ' '
+        self.content = ''
         self.number = number
         self.image = blank_image
         self.image = p.transform.scale(self.image, (self.width, self.height))
@@ -22,7 +22,7 @@ class Square(p.sprite.Sprite):
     def clicked(self, x_val, y_val):
         global turn
 
-        if self.content == ' ':
+        if self.content == '':
             if self.rect.collidepoint(x_val, y_val):
                 self.content = turn
                 board[self.number] = turn
@@ -36,6 +36,16 @@ class Square(p.sprite.Sprite):
                     self.image = o_image
                     self.image = p.transform.scale(self.image, (self.width, self.height))
                     turn = 'x'
+
+
+def checkCentre():
+    global compMove, move
+    
+    if board[5] == '':
+        compMove = 5
+        move = False
+        
+
 
 
 def Update():
@@ -59,9 +69,12 @@ background = p.image.load('Background.png')
 
 background = p.transform.scale(background, (WIDTH, HEIGHT))
 
+move = True
+compMove = 5
+
 square_group = p.sprite.Group()
 squares = []
-board = [' ' for i in range(10)]
+board = ['' for i in range(10)]
 
 num = 1
 for y in range(1, 4):
