@@ -29,7 +29,10 @@ class Square(p.sprite.Sprite):
                     self.image = x_image
                     self.image = p.transform.scale(self.image, (self.width, self.height))
                     turn = 'o'
-    
+                else:
+                    self.image = o_image
+                    self.image = p.transform.scale(self.image, (self.width, self.height))
+                    turn = 'x'
         
 def Update():
     win.blit(background, (0, 0))
@@ -72,5 +75,10 @@ while run:
     for event in p.event.get():
         if event.type == p.QUIT:
             run = False
+    
+        if event.type ==  p.MOUSEBUTTONDOWN and turn == 'x':
+            mx, my = p.mouse.get_pos()
+            for s in squares:
+                s.clicked(mx, my)
     
     Update()
