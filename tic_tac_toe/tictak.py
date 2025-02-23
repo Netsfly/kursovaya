@@ -1,4 +1,5 @@
 import pygame as p
+import time
 
 p.init()
 
@@ -76,7 +77,7 @@ def Winner(player):
 
 
 def CompMove():
-    global move
+    global move, background
 
     move = True
 
@@ -85,6 +86,9 @@ def CompMove():
 
     if move:
         Winner('x')
+
+    if move:
+        checkDangerPos()
 
     if move:
         checkCentre()
@@ -99,6 +103,14 @@ def CompMove():
         for square in squares:
             if square.number == compMove:
                 square.clicked(square.x, square.y)
+
+    else:
+        Update()
+        time.sleep(1)
+        square_group.empty()
+        background = p.image.load('Tie Game.png')
+        background = p.transform.scale(background, (WIDTH, HEIGHT))
+
 
 def checkDangerPos():
     global move, compMove
@@ -138,6 +150,7 @@ def checkDangerPos():
     elif board == dangerPos9:
         compMove = 9
         move = False
+
 
 def checkCentre():
     global compMove, move
