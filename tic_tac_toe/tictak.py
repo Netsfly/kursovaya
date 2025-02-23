@@ -110,10 +110,13 @@ background = p.image.load('Background.png')
 background = p.transform.scale(background, (WIDTH, HEIGHT))
 
 move = True
+won = False
 compMove = 5
 
 square_group = p.sprite.Group()
 squares = []
+
+winner = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 board = ['' for i in range(10)]
 
 num = 1
