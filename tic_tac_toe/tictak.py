@@ -38,6 +38,23 @@ class Square(p.sprite.Sprite):
                     turn = 'x'
 
 
+def CompMove():
+    global move
+    move = True
+    if move:
+        checkCentre()
+    if move:
+        checkCorner()
+    if move:
+        checkEdge()
+    if not move:
+        for square in squares:
+            if square.number == CompMove:
+                square.clicked(square.x, square.y)
+        
+    
+
+
 def checkCentre():
     global compMove, move
     
@@ -55,6 +72,14 @@ def checkCorner():
                 move = False
                 break
 
+def checkEdge():
+    global compMove, move
+    
+    for i in range(2, 10, 2):
+        if board[i] == '':
+            compMove = i
+            move = False
+            break
 
 def Update():
     win.blit(background, (0, 0))
