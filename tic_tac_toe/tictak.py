@@ -191,6 +191,12 @@ def getPos(n1, n2):
         elif sqs.number == n2:
             endX = sqs.x
             endY = sqs.y
+            
+
+def drawLine(x1, y1, x2, y2):
+    p.draw.line(win, (0, 0, 0), (x1, y1), (x2, y2), 15)
+    p.display.update()
+    time.sleep(2)
 
 def Update():
     win.blit(background, (0, 0))
